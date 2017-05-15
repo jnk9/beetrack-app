@@ -4,4 +4,7 @@ Rails.application.routes.draw do
       resources :gps, only: [:create]
     end
   end
+
+  get '/show', to: "home#index"
+  get '/get_locations', to: 'home#get_locations'
 end
