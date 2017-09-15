@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170512200544) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "locations", force: :cascade do |t|
     t.float    "latitude"
     t.float    "longitude"
@@ -19,7 +22,7 @@ ActiveRecord::Schema.define(version: 20170512200544) do
     t.integer  "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["vehicle_id"], name: "index_locations_on_vehicle_id"
+    t.index ["vehicle_id"], name: "index_locations_on_vehicle_id", using: :btree
   end
 
   create_table "vehicles", force: :cascade do |t|
@@ -28,4 +31,5 @@ ActiveRecord::Schema.define(version: 20170512200544) do
     t.datetime "updated_at",    null: false
   end
 
+  add_foreign_key "locations", "vehicles"
 end
